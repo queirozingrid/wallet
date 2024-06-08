@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Wallet(models.Model):
     label = models.CharField(
+        unique=True,
         max_length=255,
         help_text="The Unique Identifier for the Wallet"
     )
@@ -10,6 +11,10 @@ class Wallet(models.Model):
     amount = models.FloatField(
         default=0
     )
+
+    def __str__(self):
+        return self.label
+
 
 class Transaction(models.Model):
     wallet = models.ForeignKey(

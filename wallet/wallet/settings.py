@@ -55,7 +55,9 @@ ROOT_URLCONF = 'wallet.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            '/home/indigrinada/IdeaProjects/wallet/wallet'
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
