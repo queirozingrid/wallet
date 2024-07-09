@@ -24,3 +24,17 @@ def add_wallet(request):
         'title': 'Dashboard'
     }
     return render(request, 'templates/base.html', context)
+
+def list_wallets(request):
+    all_wallets = models.Wallet.objects.all()
+    context = {
+        'wallets': all_wallets
+    }
+    return render(request, 'templates/base.html', context)
+
+def list_transactions(request):
+    all_transactions = models.Transaction.objects.all()
+    context = {
+        'transactions': all_transactions
+    }
+    return render(request, 'templates/base.html', context)
