@@ -1,0 +1,50 @@
+{% extends 'templates/base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+    {% if form %}
+
+        <form action="/wallet/add/" method="POST">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                {{ form|crispy }}
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    {% else %}
+        <table class="table">
+            {% if wallets %}
+                <tr>
+                    <th>Label</th>
+                    <th>Amount</th>
+                </tr>
+                {% for wallet in wallets %}
+                    <tr>
+                        <td>{{ wallet.label }}</td>
+                        <td>{{ wallet.amount }} </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+
+            {% if transactions %}
+                <tr>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Wallet</th>
+                </tr>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.type }}</td>
+                        <td>{{ transaction.amount }} </td>
+                        <td>{{ transaction.description }} </td>
+                        <td>{{ transaction.wallet.label }} </td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </table>
+    {% endif %}
+{% endblock %}
+
