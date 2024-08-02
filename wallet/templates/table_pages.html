@@ -8,11 +8,15 @@
             <tr>
                 <th>Label</th>
                 <th>Amount</th>
+                <th>Actions</th>
             </tr>
             {% for wallet in wallets %}
                 <tr>
                     <td>{{ wallet.label }}</td>
                     <td>{{ wallet.amount }} </td>
+                    <td>
+                        <span><i class="fa-solid fa-trash" style="color: #ed333b; cursor:pointer;" onclick="socorro()"></i></span>
+                    </td>
                 </tr>
             {% endfor %}
         {% endif %}
@@ -27,12 +31,22 @@
             {% for transaction in transactions %}
                 <tr>
                     <td>{{ transaction.type }}</td>
-                    <td>{{ transaction.amount }} </td>
-                    <td>{{ transaction.description }} </td>
-                    <td>{{ transaction.wallet.label }} </td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.description }}</td>
+                    <td>{{ transaction.wallet.label }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa-solid fa-trash" style="color: #ed333b;"></i>
+                        </button>
+                    </td>
                 </tr>
             {% endfor %}
         {% endif %}
     </table>
+    <script>
+        function socorro() {
+            console.log("aaaaaaaaaaaaaaaaaaaaaaaa")
+        }
+    </script>
 {% endblock %}
 
