@@ -15,7 +15,16 @@
                     <td>{{ wallet.label }}</td>
                     <td>{{ wallet.amount }} </td>
                     <td>
-                        <span><i class="fa-solid fa-trash" style="color: #ed333b; cursor:pointer;" onclick="socorro()"></i></span>
+                        <form action="delete_wallet" onsubmit="return confirmDeletion();">
+                            {% csrf_token %}
+
+                            <!-- Get wallet id from hidden input -->
+                            <input type="hidden" name="id" value="{{ wallet.id }}">
+
+                            <button class="btn btn-danger" type="submit">
+                                <i class="fa-solid fa-trash" style="color: #ffffff; cursor:pointer;"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             {% endfor %}
@@ -27,6 +36,7 @@
                 <th>Amount</th>
                 <th>Description</th>
                 <th>Wallet</th>
+                <th>Actions</th>
             </tr>
             {% for transaction in transactions %}
                 <tr>
@@ -35,18 +45,15 @@
                     <td>{{ transaction.description }}</td>
                     <td>{{ transaction.wallet.label }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa-solid fa-trash" style="color: #ed333b;"></i>
-                        </button>
+                        <span><i id="trash-icon" class="fa-solid fa-trash" style="color: #ed333b; cursor:pointer;"></i></span>
                     </td>
                 </tr>
             {% endfor %}
         {% endif %}
     </table>
     <script>
-        function socorro() {
-            console.log("aaaaaaaaaaaaaaaaaaaaaaaa")
+        function confirmDeletion() {
+            return confirm('Are you sure you want to delete this item?');
         }
     </script>
 {% endblock %}
-

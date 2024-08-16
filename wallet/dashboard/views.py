@@ -32,6 +32,18 @@ def list_wallets(request):
     }
     return render(request, 'templates/table_pages.html', context)
 
+def delete_wallet(request):
+    wallet_id = request.GET.get('id')
+    wallet = models.Wallet.objects.get(id=wallet_id)
+
+    try:
+        wallet.delete()
+        messages.success(request, 'Wallet deleted successfully!')
+    except Exception as e:
+        messages.error(request, 'It wasn\'t possible to delete this wallet: {}'.format(e))
+
+    return redirect('/wallet')
+
 def list_transactions(request):
     all_transactions = models.Transaction.objects.all()
     context = {

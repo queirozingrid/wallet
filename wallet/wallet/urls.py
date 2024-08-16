@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('wallet/', views.list_wallets),
     path('wallet/add_wallet/', views.add_wallet),
+    path('wallet/delete_wallet/', views.delete_wallet),
     path('transaction/', views.list_transactions)
 ]
